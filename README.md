@@ -8,7 +8,8 @@
 
 ## HOW TO RUN BACKEND
 1. cd sekawan_backend
-2. node ace serve --watch
+2. yarn
+3. node ace serve --watch
 
 ### RUN MIGRATION AND SEEDING
 1. node ace migration:run
