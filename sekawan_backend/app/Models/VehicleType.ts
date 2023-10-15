@@ -21,5 +21,5 @@ export default class VehicleType extends BaseModel {
   public updatedAt: DateTime
 
   @hasMany(() => Vehicle)
-  public vehicle: HasMany<typeof Vehicle>
+  public vehicles: HasMany<typeof Vehicle>
 }

@@ -40,8 +40,17 @@ export default class Reservation extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
+  @column()
+  vehicleId: number
+
+  @column()
+  employeeId: number
+
+  @column()
+  driverId: number
+
   @hasMany(() => Approval)
-  public approval: HasMany<typeof Approval>
+  public approvals: HasMany<typeof Approval>
 
   @belongsTo(() => Vehicle)
   public vehicle: BelongsTo<typeof Vehicle>

@@ -19,16 +19,16 @@ export default class Vehicle extends BaseModel {
   public name: string
 
   @column()
-  public isOwned?: Boolean
+  public isOwned: Boolean
 
   @column()
-  public isAvailable?: Boolean
+  public isAvailable: Boolean
 
   @column()
   public licensePlate: string
 
   @column()
-  public fuelConsumption: string
+  public fuelConsumption: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -40,8 +40,8 @@ export default class Vehicle extends BaseModel {
   public vehicleType: BelongsTo<typeof VehicleType>
 
   @hasMany(() => Reservation)
-  public reservation: HasMany<typeof Reservation>
+  public reservations: HasMany<typeof Reservation>
 
   @hasMany(() => VehicleService)
-  public vehicleService: HasMany<typeof VehicleService>
+  public vehicleServices: HasMany<typeof VehicleService>
 }

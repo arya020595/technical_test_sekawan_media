@@ -32,8 +32,11 @@ export default class User extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
+  @column()
+  roleId: number
+
   @hasMany(() => Approval)
-  public approval: HasMany<typeof Approval>
+  public approvals: HasMany<typeof Approval>
 
   @belongsTo(() => Role)
   public role: BelongsTo<typeof Role>

@@ -24,5 +24,5 @@ export default class Employee extends BaseModel {
   public updatedAt: DateTime
 
   @hasMany(() => Reservation)
-  public reservation: HasMany<typeof Reservation>
+  public reservations: HasMany<typeof Reservation>
 }

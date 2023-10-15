@@ -11,8 +11,8 @@ export default class extends BaseSchema {
       .unsigned()
       .references('vehicle_types.id')
       table.string('name')
-      table.boolean('is_owned?')
-      table.boolean('is_available?')
+      table.boolean('is_owned')
+      table.boolean('is_available')
       table.string('license_plate')
       table.string('fuel_consumption')
       /**

@@ -21,5 +21,5 @@ export default class Role extends BaseModel {
   public updatedAt: DateTime
 
   @hasMany(() => User)
-  public user: HasMany<typeof User>
+  public users: HasMany<typeof User>
 }

@@ -13,7 +13,13 @@ export default class Approval extends BaseModel {
   public id: number
 
   @column.date({
-    serialize: (value) => value.toFormat('dd LLL yyyy')
+    serialize: (value) => {
+      if (value) {
+        return value.toFormat('dd LLL yyyy');
+      } else {
+        return null;
+      }
+    }
   })
   public approvalDate: DateTime
 
@@ -22,6 +28,12 @@ export default class Approval extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @column()
+  userId: number
+
+  @column()
+  reservationId: number
 
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>
