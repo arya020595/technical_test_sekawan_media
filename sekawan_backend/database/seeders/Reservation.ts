@@ -13,9 +13,6 @@ export default class extends BaseSeeder {
     const employees = await EmployeeFactory.createMany(5)
     const drivers = await DriverFactory.createMany(5)
 
-    // Mengambil pengguna yang akan digunakan untuk pembuatan Approval
-    const users = await UserFactory.createMany(5)
-
     // Membuat peran 'approver' dan peran biasa
     const role1 = await RoleFactory.apply('approver').create()
     const role2 = await RoleFactory.create()
@@ -39,7 +36,7 @@ export default class extends BaseSeeder {
       // Membuat Approval terkait dengan pengguna yang sesuai, maksimal 2 approval
       for (let j = 0; j < 2; j++) {
         await ApprovalFactory
-          .merge({ userId: users[i].id, reservationId: pendingReservation.id, approvalDate: undefined })
+          .merge({ userId: users2[i].id, reservationId: pendingReservation.id, approvalDate: undefined })
           .create()
       }
 
@@ -52,7 +49,7 @@ export default class extends BaseSeeder {
       // Membuat Approval terkait dengan pengguna yang sesuai, maksimal 2 approval
       for (let j = 0; j < 2; j++) {
         await ApprovalFactory
-          .merge({ userId: users[i].id, reservationId: completedReservation.id })
+          .merge({ userId: users2[i].id, reservationId: completedReservation.id })
           .create()
       }
 
@@ -65,7 +62,7 @@ export default class extends BaseSeeder {
       // Membuat Approval terkait dengan pengguna yang sesuai, maksimal 2 approval
       for (let j = 0; j < 2; j++) {
         await ApprovalFactory
-          .merge({ userId: users[i].id, reservationId: borrowedReservation.id })
+          .merge({ userId: users2[i].id, reservationId: borrowedReservation.id })
           .create()
         }
     }

@@ -26,3 +26,5 @@ Route.get('/', async () => {
 
 Route.get('/reservations', 'ReservationsController.index')
 Route.post('/reservations', 'ReservationsController.create')
+Route.get('/users', 'UsersController.index')
+Route.post('/users', 'UsersController.create')
