@@ -46,4 +46,25 @@ export default class UsersController {
             return response.status(500).json({ error: 'An error occurred while creating the user' });
         }
     }
+
+    public async login ({ request, response }: HttpContextContract) {
+        try {
+            const { email, password } = request.body()
+        
+            const user = await User
+                .query()
+                .where('email', email)
+                .where('password', password)
+                .first()
+            
+            if (user) {
+                return response.status(200).json({ data: user, message: 'User created successfully' });
+            } else {
+                return response.status(401).json({message: 'Invalid Login'})
+            }
+        } catch (error) {
+            console.error(error);
+            return response.status(500).json({ error: 'An error occurred while creating the user' });
+        }
+    }
 }
