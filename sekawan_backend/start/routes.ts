@@ -24,8 +24,12 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 
-Route.get('/reservations', 'ReservationsController.index')
-Route.post('/reservations', 'ReservationsController.create')
-Route.get('/users', 'UsersController.index')
-Route.post('/users', 'UsersController.create')
-Route.post('/users/login', 'UsersController.login')
+Route.post('/auth/login', 'AuthController.login')
+Route.post('/auth/register', 'AuthController.register')
+
+Route.group(() => {
+  Route.get('/reservations', 'ReservationsController.index')
+  Route.post('/reservations', 'ReservationsController.create')
+  Route.get('/users', 'UsersController.index')
+  Route.post('/users', 'UsersController.create')  
+}).middleware('auth')

@@ -21,7 +21,6 @@ export default class UsersController {
             const {
             name,
             email,
-            username,
             password,
             role_id,
             } = request.all();
@@ -33,7 +32,6 @@ export default class UsersController {
             const user = new User();
             user.name = name;
             user.email = email;
-            user.username = username;
             user.password = password;
         
             // Set the role_id to associate the user with a role.
