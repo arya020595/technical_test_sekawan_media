@@ -1,0 +1,11 @@
+.van-category.smartphones.selected {
+  background-color: red;
+}
+
+.van-category.groceries.selected {
+  background-color: green;
+}
+
+.van-category.laptops.selected {
+  background-color: blue;
+}
