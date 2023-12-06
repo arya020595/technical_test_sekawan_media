@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useLoaderData, useSearchParams } from "react-router-dom";
 import { getVans } from "../../api";
 
@@ -7,47 +7,18 @@ export function loader() {
 }
 
 function Vans() {
-  const data = useLoaderData();
-  console.log("asdasdasd", data);
-
-  interface Product {
-    id: number;
-    title: string;
-    category: number;
-    // Add other properties as needed
-  }
-
-  interface Data {
-    products: Product[];
-    // Add other properties as needed
-  }
+  const datas: any = useLoaderData();
+  console.log("asdasdasd", datas);
 
   // Assuming datas is of type Data
-  const [datas, setDatas] = useState<Data | null>(null);
   const [searchParams, setSearchParams]: any = useSearchParams();
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
   const categoryFilter = searchParams.get("category");
   console.log(categoryFilter);
 
   const displayedVans = categoryFilter
-    ? datas?.products.filter((data) => data.category === categoryFilter)
+    ? datas?.products.filter((data: any) => data.category === categoryFilter)
     : datas?.products;
-
-  useEffect(() => {
-    async function loadVans() {
-      try {
-        const data = await getVans();
-        setDatas(data);
-      } catch (err: any) {
-        setError(err.message || "An error occurred");
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadVans();
-  }, []);
 
   console.log(datas);
 
@@ -64,9 +35,6 @@ function Vans() {
       [key]: value,
     }));
   };
-
-  if (loading === true) return <h1>Loading...</h1>;
-  if (error) return <h1>There was an error: {error}</h1>;
 
   return (
     <>
@@ -105,7 +73,7 @@ function Vans() {
       </div>
 
       {displayedVans &&
-        displayedVans.map((data: Product, index: number) => (
+        displayedVans.map((data: any, index: number) => (
           <div key={index}>
             <Link
               to={`./${data.id}`}

@@ -1,5 +1,11 @@
-import { useEffect, useState } from "react";
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import { NavLink, Outlet, useLoaderData } from "react-router-dom";
+import { getHostVans } from "../../api";
+
+export function loader({ params }: any) {
+  console.log(params);
+
+  return getHostVans(params.id);
+}
 
 function HostVanDetail() {
   const activeStyle = ({ isActive }: any) => {
@@ -14,15 +20,7 @@ function HostVanDetail() {
     return undefined;
   };
 
-  let { id } = useParams();
-
-  const [currentVan, setCurrentVan]: any = useState(null);
-
-  useEffect(() => {
-    fetch(`https://dummyjson.com/products/${id}`)
-      .then((res) => res.json())
-      .then((data) => setCurrentVan(data));
-  }, [id]);
+  const currentVan: any = useLoaderData();
 
   return (
     <div>

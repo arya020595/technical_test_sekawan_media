@@ -1,34 +1,22 @@
-import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useLoaderData, useSearchParams } from "react-router-dom";
+import { getHostVans } from "../../api";
+import requireAuth from "../../utils";
+
+export async function loader() {
+  await requireAuth();
+  return getHostVans();
+}
 
 function HostVans() {
-  interface Product {
-    id: number;
-    title: string;
-    category: number;
-    // Add other properties as needed
-  }
-
-  interface Data {
-    products: Product[];
-    // Add other properties as needed
-  }
-
   // Assuming datas is of type Data
-  const [datas, setDatas] = useState<Data | null>(null);
+  const datas: any = useLoaderData();
   const [searchParams, setSearchParams]: any = useSearchParams();
   const categoryFilter = searchParams.get("category");
   console.log(categoryFilter);
 
   const displayedVans = categoryFilter
-    ? datas?.products.filter((data) => data.category === categoryFilter)
+    ? datas?.products.filter((data: any) => data.category === categoryFilter)
     : datas?.products;
-
-  useEffect(() => {
-    fetch("https://dummyjson.com/products")
-      .then((res) => res.json())
-      .then((data) => setDatas(data));
-  }, []);
 
   console.log(datas);
 
@@ -58,7 +46,7 @@ function HostVans() {
       </div>
 
       {displayedVans &&
-        displayedVans.map((data: Product, index: number) => (
+        displayedVans.map((data: any, index: number) => (
           <div key={index}>
             <Link to={`./${data.id}`}>{data.title}</Link>
           </div>
